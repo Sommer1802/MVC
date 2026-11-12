@@ -1,0 +1,459 @@
+﻿/* Estilos propios que complementan a Skeleton */
+
+:root {
+    --primario: #2563eb;
+    --primario-oscuro: #1e40af;
+    --fondo: #f3f5fa;
+    --texto: #1f2937;
+    --suave: #6b7280;
+    --borde: #e5e7eb;
+    --exito: #16a34a;
+    --peligro: #dc2626;
+    --radio: 12px;
+    --sombra: 0 4px 18px rgba(15, 23, 42, 0.08);
+}
+
+body {
+    background: var(--fondo);
+    color: var(--texto);
+}
+
+a {
+    color: var(--primario);
+}
+
+a:hover {
+    color: var(--primario-oscuro);
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* ---------- Menú superior (Skeleton no trae barra de navegación) ---------- */
+.menu {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
+    margin-bottom: 3.5rem;
+}
+
+.menu-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #e2e8f0;
+    font-size: 1.8rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.marca:hover {
+    color: #fff;
+}
+
+.marca strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.marca-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    font-size: 1.8rem;
+}
+
+.menu-enlaces {
+    list-style: none;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+}
+
+.menu-enlaces li {
+    margin: 0;
+}
+
+.menu-enlaces a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 1.2rem;
+    color: #94a3b8;
+    font-size: 1.4rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+}
+
+.menu-enlaces a:hover,
+.menu-enlaces a.activo {
+    color: #fff;
+}
+
+/* Línea de color debajo de la sección activa */
+.menu-enlaces a::after {
+    content: "";
+    position: absolute;
+    left: 1.2rem;
+    right: 1.2rem;
+    bottom: 0;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+    background: #3b82f6;
+    transform: scaleX(0);
+    transition: transform 0.2s;
+}
+
+.menu-enlaces a:hover::after {
+    transform: scaleX(0.5);
+}
+
+.menu-enlaces a.activo::after {
+    transform: scaleX(1);
+}
+
+/* En pantallas angostas el menú sigue horizontal: el logo arriba y
+   las secciones en una fila debajo que se desliza de lado si no caben */
+@media (max-width: 960px) {
+    .menu-contenido {
+        height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 1.5rem;
+    }
+
+    .marca {
+        padding: 1.2rem 0 0.6rem;
+    }
+
+    .menu-enlaces {
+        height: 48px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        margin: 0 -0.6rem;
+    }
+
+    .menu-enlaces::-webkit-scrollbar {
+        display: none;
+    }
+
+    .menu-enlaces a {
+        padding: 0 0.9rem;
+    }
+
+    .menu-enlaces a::after {
+        left: 0.9rem;
+        right: 0.9rem;
+    }
+}
+
+/* ---------- Botones (sobre los de Skeleton) ---------- */
+.button,
+button,
+input[type="submit"] {
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.button.button-primary,
+input[type="submit"].button-primary {
+    background: var(--primario);
+    border-color: var(--primario);
+    color: #fff;
+}
+
+.button.button-primary:hover,
+input[type="submit"].button-primary:hover {
+    background: var(--primario-oscuro);
+    border-color: var(--primario-oscuro);
+    color: #fff;
+}
+
+.button {
+    background: #fff;
+}
+
+/* ---------- Encabezado de cada página ---------- */
+.encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.encabezado h2 {
+    margin-bottom: 0.2rem;
+}
+
+.subtitulo {
+    color: var(--suave);
+    margin: 0;
+}
+
+.acciones .button {
+    margin: 0 0 0 0.5rem;
+}
+
+/* ---------- Tarjetas ---------- */
+.tarjeta {
+    background: #fff;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 2.5rem 3rem;
+    margin-bottom: 2.5rem;
+}
+
+.tarjeta.sin-relleno {
+    padding: 0;
+    overflow-x: auto;
+}
+
+.tarjeta h4,
+.tarjeta h5 {
+    margin-top: 0;
+}
+
+/* ---------- Tablas ---------- */
+.tabla {
+    margin: 0;
+}
+
+.tabla th {
+    background: #f8fafc;
+    color: var(--suave);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tabla th,
+.tabla td {
+    padding: 1.4rem 1.5rem;
+    border-bottom: 1px solid var(--borde);
+}
+
+.tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabla tbody tr:hover {
+    background: #f1f5ff;
+}
+
+.detalle th {
+    width: 30%;
+    color: var(--suave);
+    font-weight: 600;
+}
+
+.detalle th,
+.detalle td {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--borde);
+}
+
+.dinero {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.fecha {
+    white-space: nowrap;
+}
+
+/* ---------- Etiquetas de garantía ---------- */
+.etiqueta {
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    border-radius: 999px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.etiqueta-si {
+    background: #dcfce7;
+    color: var(--exito);
+}
+
+.etiqueta-no {
+    background: #f3f4f6;
+    color: var(--suave);
+}
+
+/* ---------- Formularios ---------- */
+label {
+    color: #374151;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+    border-radius: 8px;
+    border-color: #d1d5db;
+    height: 42px;
+}
+
+textarea {
+    min-height: 90px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primario) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.campo {
+    margin-bottom: 1.5rem;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    margin-bottom: 0.3rem;
+}
+
+.botones-formulario {
+    border-top: 1px solid var(--borde);
+    padding-top: 2rem;
+    margin-top: 1rem;
+}
+
+/* Mensajes de validación */
+.error,
+.field-validation-error,
+.validation-summary-errors {
+    color: var(--peligro);
+    font-size: 1.3rem;
+}
+
+.input-validation-error {
+    border-color: var(--peligro) !important;
+}
+
+/* ---------- Avisos ---------- */
+.aviso {
+    background: #fff7ed;
+    border-left: 4px solid #f97316;
+    border-radius: 8px;
+    padding: 1.2rem 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.exito {
+    background: #f0fdf4;
+    border-left: 4px solid var(--exito);
+    border-radius: 8px;
+    padding: 1.2rem 1.8rem;
+    margin-bottom: 2rem;
+    color: #166534;
+}
+
+/* ---------- Página de inicio ---------- */
+.portada {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #fff;
+    border-radius: var(--radio);
+    padding: 4rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--sombra);
+}
+
+.portada h1 {
+    margin-bottom: 0.5rem;
+}
+
+.portada p {
+    margin: 0;
+    font-size: 1.8rem;
+    opacity: 0.9;
+}
+
+.modulo {
+    background: #fff;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.modulo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+.modulo .icono {
+    font-size: 4rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.modulo .cantidad {
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: var(--primario);
+    line-height: 1.2;
+}
+
+.modulo p {
+    color: var(--suave);
+    min-height: 4.5rem;
+}
+
+.modulo .button {
+    margin-bottom: 0;
+}
+
+/* ---------- Pie de página ---------- */
+footer {
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--borde);
+    color: var(--suave);
+    text-align: center;
+}
+
+/* ---------- Celular ---------- */
+@media (max-width: 550px) {
+    .tarjeta {
+        padding: 2rem 1.6rem;
+    }
+
+    .portada {
+        padding: 2.5rem 2rem;
+    }
+
+    .acciones .button {
+        margin: 0.5rem 0.5rem 0 0;
+    }
+}

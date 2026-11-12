@@ -1,0 +1,47 @@
+﻿@{
+    // Resalta en el menú la sección donde está el usuario
+    string controlador = ViewContext.RouteData.Values["controller"] as string;
+    string accion = ViewContext.RouteData.Values["action"] as string;
+    Func<string, string, string> activo = (c, a) =>
+        c == controlador && (a == null || a == accion) ? "activo" : "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Taller de Reparaciones</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="menu" id="menu">
+        <div class="menu-contenido">
+            <a class="marca" href="@Url.Action("Index", "Home", new { area = "" })">
+                <span class="marca-logo">🔧</span>
+                <span>Taller de <strong>Reparaciones</strong></span>
+            </a>
+            <ul class="menu-enlaces">
+                <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = activo("Home", "Index") })</li>
+                <li>@Html.ActionLink("Clientes", "Index", "Cliente", new { area = "" }, new { @class = activo("Cliente", null) })</li>
+                <li>@Html.ActionLink("Técnicos", "Index", "Tecnico", new { area = "" }, new { @class = activo("Tecnico", null) })</li>
+                <li>@Html.ActionLink("Electrodomésticos", "Index", "Electrodomestico", new { area = "" }, new { @class = activo("Electrodomestico", null) })</li>
+                <li>@Html.ActionLink("Reparaciones", "Index", "Reparacion", new { area = "" }, new { @class = activo("Reparacion", null) })</li>
+                <li>@Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = activo("Home", "About") })</li>
+                <li>@Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = activo("Home", "Contact") })</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Taller de Reparaciones · Diseño con Skeleton</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

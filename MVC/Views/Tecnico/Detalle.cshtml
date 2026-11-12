@@ -1,0 +1,20 @@
+﻿@model MVC.Models.Tecnico
+
+@{
+    ViewBag.Title = "Técnico registrado";
+}
+
+<div class="exito">✔ El técnico se registró correctamente.</div>
+
+<div class="tarjeta">
+    <h4>@Model.Nombre @Model.Apellidos</h4>
+    <table class="u-full-width detalle">
+        <tr><th>Nombre</th><td>@Model.Nombre</td></tr>
+        <tr><th>Apellidos</th><td>@Model.Apellidos</td></tr>
+        <tr><th>NIF</th><td>@Model.NIF</td></tr>
+        <tr><th>Móvil</th><td>@Model.Movil</td></tr>
+    </table>
+</div>
+
+@Html.ActionLink("Ver listado", "Index", null, new { @class = "button button-primary" })
+@Html.ActionLink("Registrar otro", "Crear", null, new { @class = "button" })

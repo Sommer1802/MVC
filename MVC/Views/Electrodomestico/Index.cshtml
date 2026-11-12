@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MVC.Models.Electrodomesticos>
+
+@{
+    ViewBag.Title = "Electrodomésticos";
+}
+
+<div class="encabezado">
+    <div>
+        <h2>Electrodomésticos</h2>
+        <p class="subtitulo">@Model.Count() electrodomésticos registrados</p>
+    </div>
+    <div class="acciones">
+        @Html.ActionLink("+ Nuevo electrodoméstico", "Crear", null, new { @class = "button button-primary" })
+    </div>
+</div>
+
+<div class="tarjeta sin-relleno">
+    <table class="u-full-width tabla">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Modelo</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><strong>@item.Tipo</strong></td>
+                    <td>@item.Modelo</td>
+                    <td class="dinero">$ @item.Precio.ToString("N0")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

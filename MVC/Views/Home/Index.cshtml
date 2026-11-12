@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+
+<div class="portada">
+    <h1>Taller de Reparaciones</h1>
+    <p>Registro de clientes, técnicos, electrodomésticos y reparaciones.</p>
+</div>
+
+<div class="row">
+    <div class="three columns">
+        <div class="modulo">
+            <div class="icono">👤</div>
+            <div class="cantidad">@ViewBag.Clientes</div>
+            <h5>Clientes</h5>
+            <p>Listado, registro y búsqueda por DNI.</p>
+            @Html.ActionLink("Ver clientes", "Index", "Cliente", null, new { @class = "button button-primary" })
+        </div>
+    </div>
+    <div class="three columns">
+        <div class="modulo">
+            <div class="icono">🧑‍🔧</div>
+            <div class="cantidad">@ViewBag.Tecnicos</div>
+            <h5>Técnicos</h5>
+            <p>Listado y registro de técnicos.</p>
+            @Html.ActionLink("Ver técnicos", "Index", "Tecnico", null, new { @class = "button button-primary" })
+        </div>
+    </div>
+    <div class="three columns">
+        <div class="modulo">
+            <div class="icono">🧺</div>
+            <div class="cantidad">@ViewBag.Electrodomesticos</div>
+            <h5>Electrodomésticos</h5>
+            <p>Listado y registro de electrodomésticos.</p>
+            @Html.ActionLink("Ver equipos", "Index", "Electrodomestico", null, new { @class = "button button-primary" })
+        </div>
+    </div>
+    <div class="three columns">
+        <div class="modulo">
+            <div class="icono">🛠️</div>
+            <div class="cantidad">@ViewBag.Reparaciones</div>
+            <h5>Reparaciones</h5>
+            <p>Listado y registro de reparaciones.</p>
+            @Html.ActionLink("Ver reparaciones", "Index", "Reparacion", null, new { @class = "button button-primary" })
+        </div>
+    </div>
+</div>

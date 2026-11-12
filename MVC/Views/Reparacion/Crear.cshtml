@@ -1,0 +1,69 @@
+﻿@model MVC.Models.Reparacion
+
+@{
+    ViewBag.Title = "Nueva reparación";
+}
+
+<div class="encabezado">
+    <div>
+        <h2>Nueva reparación</h2>
+        <p class="subtitulo">Escoja el cliente, el equipo y el técnico, y describa la reparación</p>
+    </div>
+</div>
+
+<div class="tarjeta">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "error" })
+
+        <div class="row">
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.DNICliente)
+                @Html.DropDownListFor(m => m.DNICliente, (SelectList)ViewBag.Clientes, "-- Seleccione --", new { @class = "u-full-width" })
+                @Html.ValidationMessageFor(m => m.DNICliente, "", new { @class = "error" })
+            </div>
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.ModeloElectrodomestico)
+                @Html.DropDownListFor(m => m.ModeloElectrodomestico, (SelectList)ViewBag.Electrodomesticos, "-- Seleccione --", new { @class = "u-full-width" })
+                @Html.ValidationMessageFor(m => m.ModeloElectrodomestico, "", new { @class = "error" })
+            </div>
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.NIFTecnico)
+                @Html.DropDownListFor(m => m.NIFTecnico, (SelectList)ViewBag.Tecnicos, "-- Seleccione --", new { @class = "u-full-width" })
+                @Html.ValidationMessageFor(m => m.NIFTecnico, "", new { @class = "error" })
+            </div>
+        </div>
+        <div class="campo">
+            @Html.LabelFor(m => m.Descripcion)
+            @Html.TextAreaFor(m => m.Descripcion, new { @class = "u-full-width", placeholder = "Ej. Cambio de compresor, no enfría" })
+            @Html.ValidationMessageFor(m => m.Descripcion, "", new { @class = "error" })
+        </div>
+        <div class="row">
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.Fecha)
+                @Html.TextBoxFor(m => m.Fecha, "{0:yyyy-MM-dd}", new { @class = "u-full-width", type = "date" })
+                @Html.ValidationMessageFor(m => m.Fecha, "", new { @class = "error" })
+            </div>
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.Hora)
+                @Html.TextBoxFor(m => m.Hora, @"{0:hh\:mm}", new { @class = "u-full-width", type = "time" })
+                @Html.ValidationMessageFor(m => m.Hora, "", new { @class = "error" })
+            </div>
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.Coste)
+                @Html.TextBoxFor(m => m.Coste, "{0:0}", new { @class = "u-full-width", type = "number", min = "0", step = "1" })
+                @Html.ValidationMessageFor(m => m.Coste, "", new { @class = "error" })
+            </div>
+        </div>
+        <label class="campo">
+            @Html.CheckBoxFor(m => m.Garantia)
+            <span class="label-body">El electrodoméstico está en garantía</span>
+        </label>
+
+        <div class="botones-formulario">
+            <input type="submit" class="button-primary" value="Guardar" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "button" })
+        </div>
+    }
+</div>

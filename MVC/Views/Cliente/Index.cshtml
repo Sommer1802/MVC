@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MVC.Models.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<div class="encabezado">
+    <div>
+        <h2>Clientes</h2>
+        <p class="subtitulo">@Model.Count() clientes registrados</p>
+    </div>
+    <div class="acciones">
+        @Html.ActionLink("🔍 Buscar por DNI", "Buscar", null, new { @class = "button" })
+        @Html.ActionLink("+ Nuevo cliente", "Crear", null, new { @class = "button button-primary" })
+    </div>
+</div>
+
+<div class="tarjeta sin-relleno">
+    <table class="u-full-width tabla">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><strong>@item.Nombre</strong></td>
+                    <td>@item.Apellidos</td>
+                    <td>@item.DNI</td>
+                    <td>@item.Direccion</td>
+                    <td>@item.Telefono</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

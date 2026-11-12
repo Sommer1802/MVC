@@ -1,0 +1,43 @@
+﻿@model MVC.Models.Electrodomesticos
+
+@{
+    ViewBag.Title = "Nuevo electrodoméstico";
+}
+
+<div class="encabezado">
+    <div>
+        <h2>Nuevo electrodoméstico</h2>
+        <p class="subtitulo">Ingrese los datos del electrodoméstico</p>
+    </div>
+</div>
+
+<div class="tarjeta">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "error" })
+
+        <div class="row">
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.Tipo)
+                @Html.TextBoxFor(m => m.Tipo, new { @class = "u-full-width", placeholder = "Nevera, lavadora..." })
+                @Html.ValidationMessageFor(m => m.Tipo, "", new { @class = "error" })
+            </div>
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.Modelo)
+                @Html.TextBoxFor(m => m.Modelo, new { @class = "u-full-width" })
+                @Html.ValidationMessageFor(m => m.Modelo, "", new { @class = "error" })
+            </div>
+            <div class="four columns campo">
+                @Html.LabelFor(m => m.Precio)
+                @Html.TextBoxFor(m => m.Precio, "{0:0}", new { @class = "u-full-width", type = "number", min = "0", step = "1" })
+                @Html.ValidationMessageFor(m => m.Precio, "", new { @class = "error" })
+            </div>
+        </div>
+
+        <div class="botones-formulario">
+            <input type="submit" class="button-primary" value="Guardar" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "button" })
+        </div>
+    }
+</div>

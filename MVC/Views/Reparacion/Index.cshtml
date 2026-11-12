@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MVC.Models.Reparacion>
+
+@{
+    ViewBag.Title = "Reparaciones";
+}
+
+<div class="encabezado">
+    <div>
+        <h2>Reparaciones</h2>
+        <p class="subtitulo">@Model.Count() reparaciones registradas</p>
+    </div>
+    <div class="acciones">
+        @Html.ActionLink("+ Nueva reparación", "Crear", null, new { @class = "button button-primary" })
+    </div>
+</div>
+
+<div class="tarjeta sin-relleno">
+    <table class="u-full-width tabla">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Coste</th>
+                <th>Garantía</th>
+                <th>Cliente</th>
+                <th>Técnico</th>
+                <th>Equipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><strong>@item.Descripcion</strong></td>
+                    <td class="fecha">@item.Fecha.ToString("yyyy-MM-dd")</td>
+                    <td>@item.Hora.ToString(@"hh\:mm")</td>
+                    <td class="dinero">$ @item.Coste.ToString("N0")</td>
+                    <td>
+                        @if (item.Garantia)
+                        {
+                            <span class="etiqueta etiqueta-si">Sí</span>
+                        }
+                        else
+                        {
+                            <span class="etiqueta etiqueta-no">No</span>
+                        }
+                    </td>
+                    <td>@item.DNICliente</td>
+                    <td>@item.NIFTecnico</td>
+                    <td>@item.ModeloElectrodomestico</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

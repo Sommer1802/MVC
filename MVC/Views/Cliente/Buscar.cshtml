@@ -1,0 +1,91 @@
+﻿@model MVC.Models.Cliente
+
+@{
+    ViewBag.Title = "Buscar cliente";
+    var reparaciones = ViewBag.Reparaciones as List<MVC.Models.Reparacion>;
+}
+
+<div class="encabezado">
+    <div>
+        <h2>Buscar cliente</h2>
+        <p class="subtitulo">Escriba el DNI del cliente para ver sus datos y reparaciones</p>
+    </div>
+    <div class="acciones">
+        @Html.ActionLink("Volver al listado", "Index", null, new { @class = "button" })
+    </div>
+</div>
+
+<div class="tarjeta">
+    @using (Html.BeginForm("Buscar", "Cliente", FormMethod.Get))
+    {
+        <div class="row">
+            <div class="nine columns">
+                <input type="text" name="dni" value="@ViewBag.DNI" class="u-full-width" placeholder="Número de DNI" />
+            </div>
+            <div class="three columns">
+                <input type="submit" class="button-primary u-full-width" value="🔍 Buscar" />
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model != null)
+{
+    <div class="tarjeta">
+        <h4>👤 @Model.Nombre @Model.Apellidos</h4>
+        <table class="u-full-width detalle">
+            <tr><th>DNI</th><td>@Model.DNI</td></tr>
+            <tr><th>Dirección</th><td>@Model.Direccion</td></tr>
+            <tr><th>Teléfono</th><td>@Model.Telefono</td></tr>
+        </table>
+    </div>
+
+    <h5>Reparaciones del cliente</h5>
+    if (reparaciones == null || reparaciones.Count == 0)
+    {
+        <div class="aviso">Este cliente no tiene reparaciones registradas.</div>
+    }
+    else
+    {
+        <div class="tarjeta sin-relleno">
+            <table class="u-full-width tabla">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Coste</th>
+                        <th>Garantía</th>
+                        <th>Electrodoméstico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in reparaciones)
+                    {
+                        <tr>
+                            <td>@item.Descripcion</td>
+                            <td class="fecha">@item.Fecha.ToString("yyyy-MM-dd")</td>
+                            <td>@item.Hora.ToString(@"hh\:mm")</td>
+                            <td class="dinero">$ @item.Coste.ToString("N0")</td>
+                            <td>
+                                @if (item.Garantia)
+                                {
+                                    <span class="etiqueta etiqueta-si">Sí</span>
+                                }
+                                else
+                                {
+                                    <span class="etiqueta etiqueta-no">No</span>
+                                }
+                            </td>
+                            <td>@item.ModeloElectrodomestico</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+}
+else if (!string.IsNullOrWhiteSpace(ViewBag.DNI as string))
+{
+    <div class="aviso">No se encontró ningún cliente con el DNI <strong>@ViewBag.DNI</strong>.</div>
+}

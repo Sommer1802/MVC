@@ -1,0 +1,35 @@
+﻿@model MVC.Models.Reparacion
+
+@{
+    ViewBag.Title = "Reparación registrada";
+}
+
+<div class="exito">✔ La reparación se registró correctamente.</div>
+
+<div class="tarjeta">
+    <h4>🛠️ @Model.Descripcion</h4>
+    <table class="u-full-width detalle">
+        <tr><th>Fecha</th><td>@Model.Fecha.ToString("yyyy-MM-dd")</td></tr>
+        <tr><th>Hora</th><td>@Model.Hora.ToString(@"hh\:mm")</td></tr>
+        <tr><th>Coste</th><td class="dinero">$ @Model.Coste.ToString("N0")</td></tr>
+        <tr>
+            <th>Garantía</th>
+            <td>
+                @if (Model.Garantia)
+                {
+                    <span class="etiqueta etiqueta-si">Sí</span> <span>se le cobra al fabricante</span>
+                }
+                else
+                {
+                    <span class="etiqueta etiqueta-no">No</span> <span>se le cobra al cliente</span>
+                }
+            </td>
+        </tr>
+        <tr><th>Cliente (DNI)</th><td>@Model.DNICliente</td></tr>
+        <tr><th>Técnico (NIF)</th><td>@Model.NIFTecnico</td></tr>
+        <tr><th>Electrodoméstico</th><td>@Model.ModeloElectrodomestico</td></tr>
+    </table>
+</div>
+
+@Html.ActionLink("Ver listado", "Index", null, new { @class = "button button-primary" })
+@Html.ActionLink("Registrar otra", "Crear", null, new { @class = "button" })
